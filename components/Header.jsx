@@ -27,7 +27,7 @@ export default function Header({ back, emptyCart = false }) {
         </TouchableOpacity>
       )}
       <TouchableOpacity
-        style={{ position: "absolute", right: 0, top: 5, zIndex: 10 }}
+        style={{ position: "absolute", right: 0, top: 30, zIndex: 10 }}
         onPress={emptyCart ? emptyCartHanler : () => navigate.navigate("Cart")}
       >
         <Avatar.Icon

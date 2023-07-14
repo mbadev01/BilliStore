@@ -11,7 +11,7 @@ export const colors = {
   color6: "#f7f7f7",
 };
 export const defultStyle = StyleSheet.create({
-  padding: 35,
+  padding: 0,
   paddingTop: Platform.OS === "android" ? StatusBar.currentHeight : 0,
   flex: 1,
   backgroundColor: colors.color2,
