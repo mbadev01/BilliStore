@@ -6,6 +6,7 @@ import { Avatar, Button } from "react-native-paper";
 import SearchModel from "../components/SearchModel";
 import ProductCard from "../components/ProductCard";
 import { useNavigation } from "@react-navigation/native";
+import Footer from "../components/Footer";
 
 const categories = [
   { category: "Men's", _id: "bilal" },
@@ -17,10 +18,21 @@ const categories = [
 ];
 const products = [
   {
-    price: 23214,
+    price: 60,
     stock: 23,
-    name: "sample",
+    name: "Sample",
     _id: "Bilalawjkdfhljs",
+    images: [
+      {
+        url: "https://images.unsplash.com/photo-1585336261022-680e295ce3fe?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=870&q=80",
+      },
+    ],
+  },
+  {
+    price: 60,
+    stock: 23,
+    name: "PowerFull Pen",
+    _id: "Bilalawdfhljs",
     images: [
       {
         url: "https://images.unsplash.com/photo-1585336261022-680e295ce3fe?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=870&q=80",
@@ -34,7 +46,7 @@ export default function Home() {
   const [searchQuery, setSearchQuery] = useState("");
   const navigate = useNavigation();
   const categoryButtonHndler = (id) => {
-    setCatagory(id);
+    setCategory(id);
   };
   const addToCardHandler = (id) => {
     console.log("Add to Cart ", id);
@@ -122,6 +134,7 @@ export default function Home() {
           </ScrollView>
         </View>
       </View>
+      <Footer acttiveRoute={"home"} />
     </>
   );
 }

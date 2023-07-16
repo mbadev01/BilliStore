@@ -90,7 +90,7 @@ const SearchItem = ({ price, name, imgSrc, handler }) => (
       style={{
         padding: 20,
         borderRadius: 10,
-        backgroundColor: colors.color2,
+        backgroundColor: "#a98467",
         elevation: 5,
         width: "100%",
         alignItems: "center",
@@ -108,7 +108,7 @@ const SearchItem = ({ price, name, imgSrc, handler }) => (
           height: 80,
           position: "absolute",
           resizeMode: "contain",
-          top: -15,
+          top: 8,
           left: 10,
           borderTopLeftRadius: 20,
           borderBottomRightRadius: 20,
@@ -123,7 +123,7 @@ const SearchItem = ({ price, name, imgSrc, handler }) => (
             fontWeight: "900",
           }}
         >
-          ₹{price}
+          ${price}
         </Headline>
       </View>
     </View>
