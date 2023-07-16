@@ -3,23 +3,39 @@ import {
   Text,
   Platform,
   StatusBar,
+  SafeAreaView,
   ScrollView,
   TouchableOpacity,
   Image,
+  BackHandler,
 } from "react-native";
-import React from "react";
+import React, { useEffect } from "react";
 import { useNavigation } from "@react-navigation/native";
 import { colors } from "../styles/style";
-import { SafeAreaView } from "react-native-web";
 import { Headline, Searchbar } from "react-native-paper";
 
-const SearchModel = ({
-  seacrhquery,
-  setactiveSearch,
-  setsearchquery,
+const SearchModal = ({
+  searchQuery,
+  setActiveSearch,
+  setSearchQuery,
   products = [],
 }) => {
   const navigate = useNavigation();
+
+  const backAction = () => {
+    setSearchQuery("");
+    setActiveSearch(false);
+    return true;
+  };
+
+  useEffect(() => {
+    BackHandler.addEventListener("hardwareBackPress", backAction);
+
+    return () => {
+      BackHandler.removeEventListener("hardwareBackPress", backAction);
+    };
+  }, []);
+
   return (
     <View
       style={{
@@ -27,6 +43,7 @@ const SearchModel = ({
         height: "100%",
         position: "absolute",
         top: 0,
+        zIndex: 100,
         backgroundColor: colors.color2,
         padding: 35,
         paddingTop: Platform.OS === "android" ? StatusBar.currentHeight : 0,
@@ -35,14 +52,20 @@ const SearchModel = ({
       <SafeAreaView>
         <Searchbar
           placeholder="Search..."
-          onChangeText={(query) => setsearchquery(query)}
-          value={seacrhquery}
+          onChangeText={(query) => setSearchQuery(query)}
+          value={searchQuery}
           style={{
             marginTop: 20,
           }}
         />
+
         <ScrollView>
-          <View style={{ paddingHorizontal: 10, paddingVertical: 40 }}>
+          <View
+            style={{
+              paddingVertical: 40,
+              paddingHorizontal: 10,
+            }}
+          >
             {products.map((i) => (
               <SearchItem
                 key={i._id}
@@ -50,7 +73,7 @@ const SearchModel = ({
                 name={i.name}
                 price={i.price}
                 handler={() =>
-                  navigate.navigate("Productsdetails", { id: i._id })
+                  navigate.navigate("productdetails", { id: i._id })
                 }
               />
             ))}
@@ -60,6 +83,7 @@ const SearchModel = ({
     </View>
   );
 };
+
 const SearchItem = ({ price, name, imgSrc, handler }) => (
   <TouchableOpacity onPress={handler}>
     <View
@@ -90,24 +114,20 @@ const SearchItem = ({ price, name, imgSrc, handler }) => (
           borderBottomRightRadius: 20,
         }}
       />
-      <View
-        style={{
-          width: "80%",
-          paddingHorizontal: 30,
-        }}
-      >
+
+      <View style={{ width: "80%", paddingHorizontal: 30 }}>
         <Text numberOfLines={1}>{name}</Text>
         <Headline
           numberOfLines={1}
           style={{
-            fontWeight: "800",
+            fontWeight: "900",
           }}
         >
-          ${price}
+          ₹{price}
         </Headline>
       </View>
     </View>
   </TouchableOpacity>
 );
 
-export default SearchModel;
+export default SearchModal;

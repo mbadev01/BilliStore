@@ -4,6 +4,8 @@ import { colors, defultStyle } from "../styles/style";
 import Header from "../components/Header";
 import { Avatar, Button } from "react-native-paper";
 import SearchModel from "../components/SearchModel";
+import ProductCard from "../components/ProductCard";
+import { useNavigation } from "@react-navigation/native";
 
 const categories = [
   { category: "Men's", _id: "bilal" },
@@ -13,27 +15,42 @@ const categories = [
   { category: "Clothes", _id: "bilalazh12" },
   { category: "Shoes", _id: "bilalmomi12" },
 ];
-const products = [];
+const products = [
+  {
+    price: 23214,
+    stock: 23,
+    name: "sample",
+    _id: "Bilalawjkdfhljs",
+    images: [
+      {
+        url: "https://images.unsplash.com/photo-1585336261022-680e295ce3fe?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=870&q=80",
+      },
+    ],
+  },
+];
 export default function Home() {
-  const [category, setcatagory] = useState("");
+  const [category, setCategory] = useState("");
   const [activeSearch, setActiveSearch] = useState(false);
-  const [seacrhquery, setsearchquery] = useState("");
+  const [searchQuery, setSearchQuery] = useState("");
+  const navigate = useNavigation();
   const categoryButtonHndler = (id) => {
-    setcatagory(id);
+    setCatagory(id);
+  };
+  const addToCardHandler = (id) => {
+    console.log("Add to Cart ", id);
   };
 
   return (
     <>
-      <View>
-        {activeSearch && (
-          <SearchModel
-            seacrhquery={seacrhquery}
-            setactiveSearch={setActiveSearch}
-            setsearchquery={setsearchquery}
-            products={products}
-          />
-        )}
-      </View>
+      {activeSearch && (
+        <SearchModel
+          searchQuery={searchQuery}
+          setSearchQuery={setSearchQuery}
+          setActiveSearch={setActiveSearch}
+          products={products}
+        />
+      )}
+
       <View style={defultStyle}>
         <Header />
         <View
@@ -84,6 +101,23 @@ export default function Home() {
                   {item.category}
                 </Text>
               </Button>
+            ))}
+          </ScrollView>
+        </View>
+        <View style={{ flex: 1 }}>
+          <ScrollView horizontal showsHorizontalScrollIndicator={false}>
+            {products.map((item, index) => (
+              <ProductCard
+                stock={item.stock}
+                name={item.name}
+                price={item.price}
+                image={item.images[0]?.url}
+                addToCardHandler={addToCardHandler}
+                id={item._id}
+                key={item._id}
+                i={index}
+                navigate={navigate}
+              />
             ))}
           </ScrollView>
         </View>
