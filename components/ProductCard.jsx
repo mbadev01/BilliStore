@@ -72,7 +72,7 @@ const ProductCard = ({
               fontWeight: "bold",
             }}
           >
-            ₹{price}
+            ${price}
           </Text>
         </View>
 
