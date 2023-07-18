@@ -33,7 +33,7 @@ export default function Header({ back, emptyCart = false }) {
         <Avatar.Icon
           style={{ backgroundColor: colors.color4 }}
           icon={emptyCart ? "delete-outline" : "cart-outline"}
-          color={route.name === "Productdtails" ? colors.color2 : colors.color3}
+          color={route.name === "Productdtails" ? colors.color3 : colors.color2}
         />
       </TouchableOpacity>
     </>
