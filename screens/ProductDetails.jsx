@@ -1,15 +1,27 @@
-import { View, Text, Dimensions, Image, StyleSheet } from "react-native";
+import {
+  View,
+  Text,
+  Dimensions,
+  Image,
+  StyleSheet,
+  TouchableOpacity,
+} from "react-native";
 import React, { useRef } from "react";
 import { colors, defultStyle } from "../styles/style";
 import Header from "../components/Header";
 import Carousel from "react-native-snap-carousel";
-import { style } from "deprecated-react-native-prop-types/DeprecatedViewPropTypes";
+import { Avatar } from "react-native-paper";
+import { useState } from "react";
 const SLIDER_WIDTH = Dimensions.get("window").width;
 const ITEM_WIDTH = SLIDER_WIDTH;
 const ProductDetails = ({ route: { params } }) => {
   console.log(params.id);
   const isCarousel = useRef(null);
-
+  const name = "Magic Pen";
+  const price = "300";
+  const [quantity, setquantity] = useState(1);
+  const description =
+    "sigig kjhioutf uiogfuhfsukdhf kljaopyt ioaugfugauf jklggihig iltuotytyidyu  55ig jkftyd ";
   const iamges = [
     {
       id: "hgkjgtkrhgtrt",
@@ -43,9 +55,101 @@ const ProductDetails = ({ route: { params } }) => {
           padding: 35,
           flex: 1,
           marginTop: -380,
+          borderTopLeftRadius: 55,
+          borderTopRightRadius: 55,
         }}
-      ></View>
-      <Text>Bilal</Text>
+      >
+        <Text
+          numberOfLines={2}
+          style={{
+            fontSize: 25,
+          }}
+        >
+          {name}
+        </Text>
+        <Text
+          style={{
+            fontSize: 18,
+            fontWeight: 900,
+          }}
+        >
+          ${price}
+        </Text>
+        <Text
+          numberOfLines={8}
+          style={{
+            letterSpacing: 1,
+            lineHeight: 20,
+            marginVertical: 15,
+          }}
+        >
+          {description}
+        </Text>
+        <View
+          style={{
+            flexDirection: "row",
+            justifyContent: "space-between",
+            alignItems: "center",
+            paddingHorizontal: 5,
+          }}
+        >
+          <Text
+            style={{
+              color: colors.color3,
+              fontWeight: "100",
+            }}
+          >
+            Quantity
+          </Text>
+          <View
+            style={{
+              width: 80,
+              flexDirection: "row",
+              justifyContent: "space-between",
+              alignItems: "center",
+            }}
+          >
+            <TouchableOpacity>
+              <Avatar.Icon
+                icon={"minus"}
+                size={20}
+                style={{
+                  backgroundColor: colors.color5,
+                  borderRadius: 5,
+                  height: 25,
+                  width: 25,
+                }}
+              />
+            </TouchableOpacity>
+            <Text
+              style={{
+                backgroundColor: colors.color4,
+                width: 25,
+                height: 25,
+                textAlignVertical: "center",
+                textAlign: "center",
+                borderWidth: 1,
+                borderRadius: 5,
+                borderColor: colors.color5,
+              }}
+            >
+              {quantity}
+            </Text>
+            <TouchableOpacity>
+              <Avatar.Icon
+                icon={"plus"}
+                size={20}
+                style={{
+                  backgroundColor: colors.color5,
+                  borderRadius: 5,
+                  height: 25,
+                  width: 25,
+                }}
+              />
+            </TouchableOpacity>
+          </View>
+        </View>
+      </View>
     </View>
   );
 };
