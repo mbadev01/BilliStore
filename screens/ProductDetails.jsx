@@ -10,18 +10,39 @@ import React, { useRef } from "react";
 import { colors, defultStyle } from "../styles/style";
 import Header from "../components/Header";
 import Carousel from "react-native-snap-carousel";
-import { Avatar } from "react-native-paper";
+import { Avatar, Button } from "react-native-paper";
 import { useState } from "react";
+import { Toast } from "react-native-toast-message/lib/src/Toast";
 const SLIDER_WIDTH = Dimensions.get("window").width;
 const ITEM_WIDTH = SLIDER_WIDTH;
 const ProductDetails = ({ route: { params } }) => {
   console.log(params.id);
+  const incrementQty = () => {
+    if (stock <= quantity) return;
+    setquantity((prev) => prev + 1);
+  };
+  const addToCardHandler = () => {
+    if (quantity === 0)
+      return Toast.show({
+        type: "error",
+        text1: "Out OF Stock",
+      });
+    Toast.show({
+      type: "success",
+      text1: `${name} added to cart`,
+    });
+  };
+  const decremenQqty = () => {
+    if (quantity < 1) return;
+    setquantity((prev) => prev - 1);
+  };
   const isCarousel = useRef(null);
   const name = "Magic Pen";
-  const price = "300";
+  const price = 300;
+  const stock = 5;
   const [quantity, setquantity] = useState(1);
   const description =
-    "sigig kjhioutf uiogfuhfsukdhf kljaopyt ioaugfugauf jklggihig iltuotytyidyu  55ig jkftyd ";
+    "sigig kjhioutf uiogfuhfsukdhf kljaopyt ioaugfugauf jklggihig iltuotytyidyu  55ig jkftyd klggh jkhfkhgg kjgjkathuyt abcdefghijklmnopqrstuvwxys abcdefghijklmnopqrstuvwxys abcdefghijklmnopqrstuvwxys abcdefghijklmnopqrstuvwxys abcdefghijklmnopqrstuvwxys abcdefghijklmnopqrstuvwxys abcdefghijklmnopqrstuvwxys abcdefghijklmnopqrstuvwxys abcdefghijklmnopqrstuvwxys abcdefghijklmnopqrstuvwxys";
   const iamges = [
     {
       id: "hgkjgtkrhgtrt",
@@ -109,7 +130,7 @@ const ProductDetails = ({ route: { params } }) => {
               alignItems: "center",
             }}
           >
-            <TouchableOpacity>
+            <TouchableOpacity onPress={decremenQqty}>
               <Avatar.Icon
                 icon={"minus"}
                 size={20}
@@ -135,7 +156,7 @@ const ProductDetails = ({ route: { params } }) => {
             >
               {quantity}
             </Text>
-            <TouchableOpacity>
+            <TouchableOpacity onPress={incrementQty}>
               <Avatar.Icon
                 icon={"plus"}
                 size={20}
@@ -149,6 +170,11 @@ const ProductDetails = ({ route: { params } }) => {
             </TouchableOpacity>
           </View>
         </View>
+        <TouchableOpacity activeOpacity={0.8} onPress={addToCardHandler}>
+          <Button icon={"cart"} style={Style.btn} textColor={colors.color2}>
+            Add To Card
+          </Button>
+        </TouchableOpacity>
       </View>
     </View>
   );
@@ -170,6 +196,12 @@ const Style = StyleSheet.create({
     width: ITEM_WIDTH,
     resizeMode: "contain",
     height: 250,
+  },
+  btn: {
+    backgroundColor: colors.color3,
+    borderRadius: 100,
+    padding: 5,
+    marginVertical: 35,
   },
 });
 
