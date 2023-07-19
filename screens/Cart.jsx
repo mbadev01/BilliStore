@@ -4,31 +4,72 @@ import { colors, defultStyle } from "../styles/style";
 import Header from "../components/Header";
 import { Button } from "react-native-paper";
 import CartItem from "../components/CartItem";
-import { id } from "deprecated-react-native-prop-types/DeprecatedTextPropTypes";
-const cartItems = [
-  {
-    name: "MacBook",
-    price: 2500000,
-    image:
-      "https://images.unsplash.com/photo-1585336261022-680e295ce3fe?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=870&q=80",
-    stock: 3,
-    quantity: 2,
-    product: "jkhdgflhuiobh",
-  },
-  {
-    name: "Shoes",
-    price: 5500,
-    image:
-      "https://images.unsplash.com/photo-1517336714731-489689fd1ca8?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1026&q=80",
-    stock: 3,
-    quantity: 5,
-    product: "khhiuhyjjl",
-  },
-];
-const incrementHnadler = () => {};
-const decrementHandler = () => {};
+import { useNavigation } from "@react-navigation/native";
 
-const Cart = () => {
+export const Cart = () => {
+  const navigate = useNavigation();
+  const cartItems = [
+    {
+      name: "MacBook",
+      price: 2500000,
+      image:
+        "https://images.unsplash.com/photo-1585336261022-680e295ce3fe?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=870&q=80",
+      stock: 3,
+      quantity: 2,
+      product: "jkhdgflhuiobh",
+    },
+    {
+      name: "Shoes",
+      price: 5500,
+      image:
+        "https://images.unsplash.com/photo-1517336714731-489689fd1ca8?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1026&q=80",
+      stock: 3,
+      quantity: 5,
+      product: "khhiuhyjjl",
+    },
+    {
+      name: "Shoes",
+      price: 5500,
+      image:
+        "https://images.unsplash.com/photo-1517336714731-489689fd1ca8?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1026&q=80",
+      stock: 3,
+      quantity: 5,
+      product: "khhiufsdthyjjl",
+    },
+    {
+      name: "Shoes",
+      price: 5500,
+      image:
+        "https://images.unsplash.com/photo-1517336714731-489689fd1ca8?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1026&q=80",
+      stock: 3,
+      quantity: 5,
+      product: "khhidgsgfuhyjjl",
+    },
+    {
+      name: "Shoes",
+      price: 5500,
+      image:
+        "https://images.unsplash.com/photo-1517336714731-489689fd1ca8?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1026&q=80",
+      stock: 3,
+      quantity: 5,
+      product: "khdasthiuhyjjl",
+    },
+    {
+      name: "Shoes",
+      price: 5500,
+      image:
+        "https://images.unsplash.com/photo-1517336714731-489689fd1ca8?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1026&q=80",
+      stock: 3,
+      quantity: 5,
+      product: "khhiuhyewtwjjl",
+    },
+  ];
+  const incrementHnadler = (id, qty, stock) => {
+    console.log("Increasing", id, qty, stock);
+  };
+  const decrementHandler = (id, qty) => {
+    console.log("Decreasing", id, qty);
+  };
   return (
     <View
       style={{
@@ -65,7 +106,7 @@ const Cart = () => {
           flex: 1,
         }}
       >
-        <ScrollView>
+        <ScrollView showsVerticalScrollIndicator={false}>
           {cartItems.map((i, index) => (
             <CartItem
               key={i.product}
@@ -92,7 +133,11 @@ const Cart = () => {
         <Text>5 Items</Text>
         <Text>$5</Text>
       </View>
-      <TouchableOpacity>
+      <TouchableOpacity
+        onPress={
+          cartItems.length > 0 ? () => navigate.navigate("confirmorder") : null
+        }
+      >
         <Button
           style={{
             backgroundColor: colors.color3,

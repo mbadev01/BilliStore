@@ -1,6 +1,7 @@
-import { View, Text, Image } from "react-native";
+import { View, Text, Image, TouchableOpacity } from "react-native";
 import React from "react";
 import { colors } from "../styles/style";
+import { Avatar } from "react-native-paper";
 
 const CartItem = ({
   name,
@@ -74,7 +75,46 @@ const CartItem = ({
           alignSelf: "center",
           justifyContent: "space-between",
         }}
-      ></View>
+      >
+        <TouchableOpacity onPress={() => decrementHandler(id, qty)}>
+          <Avatar.Icon
+            icon={"minus"}
+            size={20}
+            style={{
+              borderRadius: 5,
+              backgroundColor: colors.color5,
+              height: 25,
+              width: 25,
+            }}
+          />
+        </TouchableOpacity>
+        <Text
+          style={{
+            backgroundColor: colors.color4,
+            height: 25,
+            width: 25,
+            textAlignVertical: "center",
+            textAlign: "center",
+            borderWidth: 1,
+            borderRadius: 5,
+            borderColor: colors.color5,
+          }}
+        >
+          {qty}
+        </Text>
+        <TouchableOpacity onPress={() => incrementHnadler(id, qty, stock)}>
+          <Avatar.Icon
+            icon={"plus"}
+            size={20}
+            style={{
+              borderRadius: 5,
+              backgroundColor: colors.color5,
+              height: 25,
+              width: 25,
+            }}
+          />
+        </TouchableOpacity>
+      </View>
     </View>
   );
 };
