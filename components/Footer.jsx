@@ -9,7 +9,7 @@ const Footer = (acttiveRoute = "home") => {
   const loading = false;
   const isAuthenticated = true;
 
-  const navigationHandler = (key) => {
+  const navigatationHandler = (key) => {
     switch (key) {
       case 0:
         navigate.navigate("home");
@@ -18,9 +18,9 @@ const Footer = (acttiveRoute = "home") => {
         navigate.navigate("cart");
         break;
       case 2:
-        if (isAuthenticated) navigate.navigate("profile");
-        else navigate.navigate("login");
-
+        if (isAuthenticated) navigate.navigate("login");
+        else navigate.navigate("profile");
+        break;
       default:
         navigate.navigate("home");
         break;
@@ -51,7 +51,7 @@ const Footer = (acttiveRoute = "home") => {
         >
           <TouchableOpacity
             activeOpacity={0.8}
-            onPress={() => navigationHandler(1)}
+            onPress={() => navigatationHandler(1)}
           >
             <Avatar.Icon
               {...avatarOption}
@@ -60,7 +60,7 @@ const Footer = (acttiveRoute = "home") => {
           </TouchableOpacity>
           <TouchableOpacity
             activeOpacity={0.8}
-            onPress={() => navigationHandler(2)}
+            onPress={() => navigatationHandler(2)}
           >
             <Avatar.Icon
               {...avatarOption}

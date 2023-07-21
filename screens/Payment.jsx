@@ -1,10 +1,19 @@
-import { View, Text, StatusBar } from "react-native";
-import React from "react";
+import { View, Text, StatusBar, TouchableOpacity } from "react-native";
+import React, { useState } from "react";
 import { colors } from "../styles/style";
 import Header from "../components/Header";
-import { RadioButton } from "react-native-paper";
+import { Button, RadioButton } from "react-native-paper";
+import { useNavigation } from "@react-navigation/native";
 
-const Payment = (navigation, route) => {
+const Payment = () => {
+  const [paymentMethod, setPaymentMethod] = useState("COD");
+  const isAuthenticated = false;
+  const navigate = useNavigation();
+  const redirectToLogin = () => {
+    navigate.navigate("login");
+  };
+  const codHandler = () => {};
+  const onlineHandler = () => {};
   return (
     <View
       style={{
@@ -48,7 +57,10 @@ const Payment = (navigation, route) => {
           justifyContent: "center",
         }}
       >
-        <RadioButton.Group>
+        <RadioButton.Group
+          onValueChange={setPaymentMethod}
+          value={paymentMethod}
+        >
           <View
             style={{
               flexDirection: "row",
@@ -91,6 +103,30 @@ const Payment = (navigation, route) => {
           </View>
         </RadioButton.Group>
       </View>
+      <TouchableOpacity
+        onPress={
+          !isAuthenticated
+            ? redirectToLogin
+            : paymentMethod === "COD"
+            ? () => codHandler()
+            : onlineHandler
+        }
+      >
+        <Button
+          style={{
+            backgroundColor: colors.color3,
+            borderRadius: 100,
+            margin: 10,
+            padding: 5,
+          }}
+          textColor={colors.color2}
+          icon={
+            paymentMethod === "COD" ? "check-circle" : "circle-multiple-outline"
+          }
+        >
+          {paymentMethod === "COD" ? "Place Order" : "Pay"}
+        </Button>
+      </TouchableOpacity>
     </View>
   );
 };
