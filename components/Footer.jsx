@@ -18,8 +18,8 @@ const Footer = (acttiveRoute = "home") => {
         navigate.navigate("cart");
         break;
       case 2:
-        if (isAuthenticated) navigate.navigate("login");
-        else navigate.navigate("profile");
+        if (isAuthenticated) navigate.navigate("profile");
+        else navigate.navigate("login");
         break;
       default:
         navigate.navigate("home");
@@ -64,7 +64,13 @@ const Footer = (acttiveRoute = "home") => {
           >
             <Avatar.Icon
               {...avatarOption}
-              icon={acttiveRoute === "profile " ? "account" : "account-outline"}
+              icon={
+                isAuthenticated === false
+                  ? "login"
+                  : acttiveRoute === "profile "
+                  ? "account"
+                  : "account-outline"
+              }
             />
           </TouchableOpacity>
         </View>

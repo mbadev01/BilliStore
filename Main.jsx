@@ -8,6 +8,11 @@ import Cart from "./screens/Cart";
 import ConfirmOrder from "./screens/ConfirmOrder";
 import Payment from "./screens/Payment";
 import Login from "./screens/Login";
+import ForgetPassword from "./screens/ForgetPassword";
+import Verify from "./screens/Verify";
+import SignUp from "./screens/SignUp";
+import Profile from "./screens/Profile";
+
 const Stack = createNativeStackNavigator();
 export default function Main() {
   return (
@@ -23,6 +28,10 @@ export default function Main() {
           <Stack.Screen name="confirmorder" component={ConfirmOrder} />
           <Stack.Screen name="payment" component={Payment} />
           <Stack.Screen name="login" component={Login} />
+          <Stack.Screen name="signup" component={SignUp} />
+          <Stack.Screen name="forgetPassword" component={ForgetPassword} />
+          <Stack.Screen name="verify" component={Verify} />
+          <Stack.Screen name="profile" component={Profile} />
         </Stack.Group>
       </Stack.Navigator>
       <Toast position="top" />
