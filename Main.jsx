@@ -12,6 +12,9 @@ import ForgetPassword from "./screens/ForgetPassword";
 import Verify from "./screens/Verify";
 import SignUp from "./screens/SignUp";
 import Profile from "./screens/Profile";
+import UpdateProfile from "./screens/UpdateProfile";
+import ChangePassword from "./screens/ChangePassword";
+import Orders from "./screens/Orders";
 
 const Stack = createNativeStackNavigator();
 export default function Main() {
@@ -32,6 +35,9 @@ export default function Main() {
           <Stack.Screen name="forgetPassword" component={ForgetPassword} />
           <Stack.Screen name="verify" component={Verify} />
           <Stack.Screen name="profile" component={Profile} />
+          <Stack.Screen name="updateprofile" component={UpdateProfile} />
+          <Stack.Screen name="changepassword" component={ChangePassword} />
+          <Stack.Screen name="orders" component={Orders} />
         </Stack.Group>
       </Stack.Navigator>
       <Toast position="top" />

@@ -15,6 +15,7 @@ const Profile = () => {
     console.log("Sign Out");
   };
   const loading = false;
+  const navigation = useNavigation();
   const navigateHandler = (text) => {
     switch (text) {
       case "Admin":
@@ -39,7 +40,7 @@ const Profile = () => {
         break;
     }
   };
-  const navigation = useNavigation;
+
   const [avatar, setAvatar] = useState(null);
   return (
     <View
@@ -127,7 +128,7 @@ const Profile = () => {
               icon={"format-list-bulleted-square"}
             />
             <ButtonBox
-              //handler={}
+              handler={navigateHandler}
               text={"Admin"}
               icon={"view-dashboard"}
             />
