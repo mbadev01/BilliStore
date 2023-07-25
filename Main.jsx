@@ -15,6 +15,7 @@ import Profile from "./screens/Profile";
 import UpdateProfile from "./screens/UpdateProfile";
 import ChangePassword from "./screens/ChangePassword";
 import Orders from "./screens/Orders";
+import AdminPanel from "./screens/Admin/AdminPanel";
 
 const Stack = createNativeStackNavigator();
 export default function Main() {
@@ -38,6 +39,7 @@ export default function Main() {
           <Stack.Screen name="updateprofile" component={UpdateProfile} />
           <Stack.Screen name="changepassword" component={ChangePassword} />
           <Stack.Screen name="orders" component={Orders} />
+          <Stack.Screen name="adminpanel" component={AdminPanel} />
         </Stack.Group>
       </Stack.Navigator>
       <Toast position="top" />

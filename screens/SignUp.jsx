@@ -7,7 +7,7 @@ import {
 } from "react-native";
 import React, { useState } from "react";
 import { colors, defaultImg, inputStyling } from "../styles/style";
-import { Avatar, Button, TextInput } from "react-native-paper";
+import { Avatar, Button, RadioButton, TextInput } from "react-native-paper";
 import { useNavigation } from "@react-navigation/native";
 
 const SignUp = () => {
@@ -131,7 +131,17 @@ const SignUp = () => {
               value={pinCode}
               onChangeText={setPinCode}
             />
-
+            <View
+              style={{
+                flexDirection: "row",
+              }}
+            >
+              <RadioButton.Item label="Male" labelStyle={{ color: "white" }} />
+              <RadioButton.Item
+                label="Female"
+                labelStyle={{ color: "white" }}
+              />
+            </View>
             <Button
               loading={loading}
               textColor={colors.color2}

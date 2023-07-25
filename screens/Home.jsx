@@ -16,12 +16,13 @@ const categories = [
   { category: "Clothes", _id: "bilalazh12" },
   { category: "Shoes", _id: "bilalmomi12" },
 ];
-const products = [
+export const products = [
   {
     price: 60,
     stock: 23,
     name: "Sample",
     _id: "Bilalawjkdfhljs",
+    category: "bilalmomi12",
     images: [
       {
         url: "https://images.unsplash.com/photo-1585336261022-680e295ce3fe?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=870&q=80",
@@ -31,6 +32,7 @@ const products = [
   {
     price: 60,
     stock: 23,
+    category: "bilalmsdfomi12",
     name: "PowerFull Pen",
     _id: "Bilalawdfhljs",
     images: [
