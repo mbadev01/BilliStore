@@ -7,9 +7,28 @@ import ButtonBox from "../../components/ButtonBox";
 import ProductListHeading from "../../components/ProductListHeading";
 import { products } from "../Home";
 import ProductListItem from "../../components/ProductListItem";
+import Chart from "../../components/Chart";
+import { useNavigation } from "@react-navigation/native";
 
-const AdminPanel = (navigation) => {
-  const navigationHandler = () => {};
+const AdminPanel = () => {
+  const navigation = useNavigation();
+  const navigationHandler = (text) => {
+    switch (text) {
+      case "Category":
+        navigation.navigate("categories");
+        break;
+      case "All Orders":
+        navigation.navigate("adminorders");
+        break;
+      case "Product":
+        navigation.navigate("newproduct");
+        break;
+
+      default:
+        navigation.navigate("adminorders");
+        break;
+    }
+  };
   const deleteProductHandler = (id) => {
     console.log(`delete with ID:${id}`);
   };
@@ -50,7 +69,9 @@ const AdminPanel = (navigation) => {
               borderRadius: 20,
               alignItems: "center",
             }}
-          ></View>
+          >
+            <Chart inStock={12} outOfStock={2} />
+          </View>
           <View>
             <View
               style={{

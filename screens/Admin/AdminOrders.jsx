@@ -1,72 +1,18 @@
 import { View, Text, StatusBar, ScrollView } from "react-native";
 import React from "react";
-
-import { colors } from "../styles/style";
-import Header from "../components/Header";
-import Loader from "../components/Loader";
-import { Headline } from "react-native-paper";
-import OrderItem from "../components/OrderItem";
-
-export const orders = [
-  {
-    _id: "bilaakjhf",
-    createdAt: "2015-03-25",
-    orderStatus: "Processing",
-    paymentMethod: "COD",
-    totalAmount: "$10000",
-    shoppingInfo: {
-      address: "876-K SRA Colony Multan",
-      city: "Multan",
-      country: "Pakistan",
-      pinCode: "60000",
-    },
-  },
-  {
-    _id: "bilaakerrrjhf",
-    createdAt: "2015-03-25",
-    orderStatus: "Processing",
-    paymentMethod: "COD",
-    totalAmount: "$10000",
-    shoppingInfo: {
-      address: "876-K SRA Colony Multan",
-      city: "Multan",
-      country: "Pakistan",
-      pinCode: "60000",
-    },
-  },
-  {
-    _id: "bilaakfarjhf",
-    createdAt: "2015-03-25",
-    orderStatus: "Processing",
-    paymentMethod: "COD",
-    totalAmount: "$10000",
-    shoppingInfo: {
-      address: "876-K SRA Colony Multan",
-      city: "Multan",
-      country: "Pakistan",
-      pinCode: "60000",
-    },
-  },
-  {
-    _id: "bilaakjcgsdhf",
-    createdAt: "2015-03-25",
-    orderStatus: "Processing",
-    paymentMethod: "Online",
-    totalAmount: "$40000",
-    shoppingInfo: {
-      address: "876-K SRA Colony Multan",
-      city: "Multan",
-      country: "Pakistan",
-      pinCode: "60000",
-    },
-  },
-];
-const Orders = () => {
+import { colors } from "../../styles/style";
+import Header from "../../components/Header";
+import Loader from "../../components/Loader";
+import OrderItem from "../../components/OrderItem";
+import Orders, { orders } from "../Orders";
+const AdminOrders = () => {
   const loading = false;
+  const processOrderLoading = false;
+  const updateHandler = () => {};
   return (
     <View
       style={{
-        padding: 10,
+        padding: 0,
         paddingTop: Platform.OS === "android" ? StatusBar.currentHeight : 0,
         flex: 1,
         backgroundColor: colors.color5,
@@ -86,7 +32,7 @@ const Orders = () => {
             margin: 10,
           }}
         >
-          Orders
+          All Orders
         </Text>
       </View>
       {loading ? (
@@ -111,8 +57,9 @@ const Orders = () => {
                   orderedOn={item.createdAt}
                   address={`${item.shoppingInfo.address}, ${item.shoppingInfo.city}, ${item.shoppingInfo.country} 
                   ${item.shoppingInfo.pinCode}`}
-                  // admin={true}
-                  // loading={true}
+                  admin={true}
+                  loading={processOrderLoading}
+                  updateHandler={updateHandler}
                 />
               ))
             ) : (
@@ -131,4 +78,4 @@ const Orders = () => {
   );
 };
 
-export default Orders;
+export default AdminOrders;

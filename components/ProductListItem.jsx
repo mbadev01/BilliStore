@@ -1,7 +1,8 @@
 import { View, Text, TouchableOpacity, StyleSheet, Image } from "react-native";
-import React from "react";
+import React, { useState } from "react";
 import { useNavigation } from "@react-navigation/native";
 import { colors } from "../styles/style";
+import MyModel from "./MyModel";
 
 const ProductListItem = ({
   deleteHandler,
@@ -14,11 +15,13 @@ const ProductListItem = ({
   imgSrc,
 }) => {
   const navigate = useNavigation();
+  const [openModel, setOpenModel] = useState(false);
   return (
     <>
       <TouchableOpacity
         activeOpacity={0.9}
-        onPress={() => navigate.navigate("productsdetails", { id })}
+        onLongPress={() => setOpenModel((prev) => !prev)}
+        onPress={() => navigate.navigate("productdetails", { id })}
       >
         <View
           style={{
@@ -53,6 +56,14 @@ const ProductListItem = ({
           </Text>
         </View>
       </TouchableOpacity>
+      {openModel && (
+        <MyModel
+          id={id}
+          deleteHandler={deleteHandler}
+          navigate={navigate}
+          setOpenModel={setOpenModel}
+        />
+      )}
     </>
   );
 };
